@@ -1,3 +1,6 @@
 <template name="home">
+  {{#if currentUser.emails.[0].verified}}
   <span>You are logged in ..</span>
+  <button type="button" class="btn btn-link logout">Log Out</button> 
+  {{else}} {{> login}} {{/if}}
 </template>

@@ -17,9 +17,15 @@ Meteor.methods({
 
     //Send email-id verification mail right after creating new user.
     Accounts.sendVerificationEmail(userId);
+  },
 
-    //Forbid auto login unless email is verified.
-    Accounts.validateLoginAttempt(false);
+  checkLoginEmailId(emailId){
+    var emailIdDetails;
+
+    emailIdDetails = Meteor.users.findOne({emails: {$elemMatch:{address: emailId}}},
+                                          {emails: []});
+
+    return emailIdDetails.emails[0].verified;
   }
 });
 //#end region

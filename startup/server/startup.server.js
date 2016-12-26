@@ -5,7 +5,8 @@ Meteor.startup(() => {
     process.env.MAIL_URL = "smtp://postmaster@sandbox66e409414c57457a89c761371c92837d.mailgun.org:326c4ad217e81eb81e2e1abccfa603a2@smtp.mailgun.org:587";
     // process.env.MAIL_URL = "smtp://siddhchakragujar@gmail.com:sidhchakra_gujar_003@smtp.gmail.com:587";
 
-    Accounts.config({ sendVerificationEmail: true});
+    Accounts.config({ sendVerificationEmail: true,
+                      loginExpirationInDays: null});
     
     Accounts.emailTemplates.siteName = "ShareMe!";
     Accounts.emailTemplates.from = "ShareMe! <support@shareme.com>";

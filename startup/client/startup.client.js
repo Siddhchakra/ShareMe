@@ -5,22 +5,18 @@ import '/client/main.html';
 
 //#region Routing
 Router.route('/', function () {
-    BlazeLayout.render('App_body', { main: 'login' })
+    BlazeLayout.render('App_body', { main: 'home' })
 });
 
 Router.route('/verify-email/:token', function () {
-    // this.render("email_verified");
     var token;
 
-    token = this.originalUrl.split("/verify-email/")[1];
+    token = this.params.token;
 
     Accounts.verifyEmail(token, function (err, res) {
-        console.log("Err: " + err);
-        console.log("Res: " + res);
+        console.log("Error: " + err);
     });
+
+    Router.go("/");
 });
-//#end region
-
-//#region Verify email
-
 //#end region

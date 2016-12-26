@@ -1,0 +1,1 @@
+var loginValidationMessage = 'Please verify your email-id..';
