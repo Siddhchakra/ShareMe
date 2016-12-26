@@ -35,12 +35,6 @@ Template.login.events({
     
     emailId = $('[name=email]').val();
     password = $('[name=password]').val();
-
-    userDetails = Meteor.subscribe('userDetails', emailId, function(res, err, et){
-      console.log(res + err + et);
-    });
-
-    console.log(userDetails);
   },
 
   "click .sign-up": function (event) {

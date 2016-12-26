@@ -1,10 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 
 //#region Meteor Publish
-Meteor.publish('userDetails', function (emailId) {
-  return Meteor.users.find({ emails: { $elemMatch: { address: emailId } } },
-                              { emails: { $elemMatch: { address: emailId } } });
-});
 //#end region
 
 
