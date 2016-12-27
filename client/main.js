@@ -14,13 +14,20 @@ import { MessagePhrases } from '/imports/common/messagePhrases.js';
 //Register Template
 Template.register.events({
   "click .sign-up": function (event) {
+    var firstName;
+    var lastName;
     var emailId;
     var password;
+    var methodArguments;
 
-    emailId = $('[name=email]').val();
-    password = $('[name=password]').val();
+    methodArguments = {};
+    methodArguments.emailId = $('[name=email]').val();
+    methodArguments.password = $('[name=password]').val();
+    methodArguments.firstName = $('[name=firstname]').val();
+    methodArguments.lastName = $('[name=lastname]').val();
 
-    Meteor.call("createNewUser", emailId, password, function (err, res) {
+
+    Meteor.call("createNewUser", methodArguments, function (err, res) {
       console.log(err);
     });
   },
@@ -43,10 +50,15 @@ Template.login.events({
 
     Meteor.call("checkLoginEmailId", emailId, function (err, res) {
       if (res) {
-        Meteor.loginWithPassword(emailId, password);
-        BlazeLayout.render('App_body', { main: 'home' });
+        Meteor.loginWithPassword(emailId, password, function (err) {
+          if (!err) {
+            BlazeLayout.render('App_body', { main: 'home' });
+          } else {
+            console.log("Error: " + err);
+          }
+        });
       } else {
-        $('.loginmsg').val(MessagePhrases.loginValidationMessage);
+        $('.loginmsg').text('Please verify your email-id..');
       }
     });
   },

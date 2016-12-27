@@ -1,6 +1,9 @@
 <template name="home">
   {{#if currentUser.emails.[0].verified}}
-  <span>You are logged in ..</span>
   <button type="button" class="btn btn-link logout">Log Out</button> 
+  <br>
+  <br>
+  <br>
+  <span>{{currentUser.profile.firstName}} is logged in ..</span>
   {{else}} {{> login}} {{/if}}
 </template>

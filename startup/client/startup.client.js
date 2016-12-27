@@ -5,7 +5,7 @@ import '/client/main.html';
 
 //#region Routing
 Router.route('/', function () {
-    BlazeLayout.render('App_body', { main: 'home' })
+    BlazeLayout.render('App_body', { main: 'home' });
 });
 
 Router.route('/verify-email/:token', function () {

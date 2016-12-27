@@ -6,13 +6,17 @@ import { Meteor } from 'meteor/meteor';
 
 //#region Methods
 Meteor.methods({
-  createNewUser(emailId, password) {
+  createNewUser(args) {
     var userId;
 
     //Sign-up a user with email by creating new user in Users DB
     userId = Accounts.createUser({
-      email: emailId,
-      password: password
+      email: args.emailId,
+      password: args.password,
+      profile: {
+        firstName: args.firstName,
+        lastName: args.lastName
+      }
     });
 
     //Send email-id verification mail right after creating new user.
