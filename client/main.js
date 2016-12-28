@@ -7,6 +7,7 @@ import '/imports/ui/pages/emailverified.html';
 import '/imports/ui/pages/register.html';
 import '/imports/ui/pages/login.html';
 import '/imports/ui/pages/home.html';
+import '/imports/ui/pages/dashboard.html';
 
 //import JS files
 import { MessagePhrases } from '/imports/common/messagePhrases.js';
