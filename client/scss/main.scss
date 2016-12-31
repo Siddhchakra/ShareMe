@@ -1,6 +1,74 @@
 body{
-    background-color: #00bcd4;
+    background-color: black;
     vertical-align: middle;
+    .background-image{
+        position: fixed; 
+        opacity: 0.5;
+    }
+    
+    //Zoom-In animation effect
+    @keyframes animateZoomin{
+        from {
+            transform: scale(0,0);
+        }
+        to{
+            transform: scale(1,1);
+        }
+    }
+    .animate-zoom-in{
+        animation:animateZoomin 0.6s;
+    }
+    
+    //Fade-In animation effect
+    @keyframes animateFadeIn{
+        from {
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+    }
+    .animate-fade-in{
+        opacity:0;
+        animation:animateFadeIn ease-in-out;
+        animation-fill-mode:forwards;
+        animation-duration:0.5s;  
+    }
+
+    //Left animation effect
+    @keyframes animateleft{
+        from {
+            left: -50%;
+            opacity: 0;
+        }
+        to{
+            left: 0%;
+            opacity: 1;
+        }
+    }
+    .animate-left{
+        opacity:0;
+        animation:animateleft;
+        animation-fill-mode:forwards;
+        animation-duration:0.6s;  
+    }
+
+    //Logged Out toast
+    .logged-out-toast{
+        // left: -148%;
+        right: 565% !important;
+        margin-top: -30% !important;
+        opacity: 0.7 !important;
+    }
+
+
+    //common
+    .no-border-radius{
+        border-radius: 0 !important;
+    }
+    .no-border{
+        border: none !important;
+    }
 }
 
 #login-page{
@@ -13,6 +81,34 @@ body{
 #register-page{
     .card-panel{
         margin-left: 33%;
-        // margin-top: 2%;
+        margin-top: 2%;
+    }
+}
+
+#dashboard-page{
+    .profile-pic{
+        width: 50%;
+    }
+    .log-out-img{
+        float: left;
+        width: 10%;
+    }
+    .divider{
+        margin-top: 10% !important;
+    }
+    .user-display-name{
+        margin-right: 10%;
+    }
+    .user-section{
+        margin-top: 0% !important;
+        height: 100%;
+        position: fixed;      
+    }
+    .user-options{
+        left: 6%;
+        margin-top: 20%;
+    }
+    .timeline-section{
+        float: right;
     }
 }

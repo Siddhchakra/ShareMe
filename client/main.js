@@ -73,7 +73,14 @@ Template.login.events({
 //Home Template
 Template.home.events({
   "click .logout": function (event) {
-    Meteor.logout();
+    Meteor.logout(function (err) {
+      if (!err) {
+        // Materialize.toast('You are logged out', 3000, 'rounded logged-out-toast');
+      }
+      else {
+        console.log(err);
+      }
+    });
   }
 });
 //End

@@ -1,7 +1,24 @@
 <template name="dashboard">
-    <button type="button" class="btn-link logout">Log Out</button>
-    <br>
-    <br>
-    <br>
-    <span>{{currentUser.profile.firstName}} is logged in ..</span>
+    <div id="dashboard-page" class="row">
+        <div class="z-depth-2 user-section no-border-radius animate-left col s2 card">
+            <div class="center">
+                <img src="/img/default_profile_pic.svg" alt="" class="circle profile-pic responsive-img">
+                <br>
+                <div>
+                    <a class="logout log-out-img" href=""><img src="/img/exit.svg" alt="" class="circle responsive-img"></a>
+                    <span class="user-display-name blue-text text-darken-2">{{currentUser.profile.firstName}} {{currentUser.profile.lastName}} </span>
+                </div>
+                <div class="divider"></div>
+            </div>
+            <div class="collection no-border user-options">
+                <a href="" class="collection-item active">Friends</a>
+            </div>
+        </div>
+
+        <div class="timeline-section animate-zoom-in col s10">
+            <div class="col s12 card">
+                <p class="center login-form-text">{{currentUser.profile.firstName}} is logged in ..</p>
+            </div>
+        </div>
+    </div>
 </template>
