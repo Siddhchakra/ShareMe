@@ -1,6 +1,28 @@
 import { Meteor } from 'meteor/meteor';
+import { Friends } from '/models/tables/friendsCollection';
 
 //#region Meteor Publish
+Meteor.publish('friendsList', function () {
+  // return Meteor.users.find({ _id: { $ne: this.userId } });
+  var self = this;
+  var handle = Meteor.users.find({ _id: { $ne: this.userId } }).observeChanges({
+    added: function (id, fields) {
+      self.added('friendsCollection', id, fields);
+    },
+    changed: function (id, fields) {
+      self.changed('friendsCollection', id, fields);
+    },
+    removed: function (id) {
+      self.removed('friendsCollection', id);
+    }
+  });
+
+  self.ready();
+
+  self.onStop(function () {
+    handle.stop();
+  });
+});
 //#end region
 
 
@@ -23,11 +45,11 @@ Meteor.methods({
     Accounts.sendVerificationEmail(userId);
   },
 
-  checkLoginEmailId(emailId){
+  checkLoginEmailId(emailId) {
     var emailIdDetails;
 
-    emailIdDetails = Meteor.users.findOne({emails: {$elemMatch:{address: emailId}}},
-                                          {emails: []});
+    emailIdDetails = Meteor.users.findOne({ emails: { $elemMatch: { address: emailId } } },
+                                          { emails: [] });
 
     return emailIdDetails.emails[0].verified;
   }

@@ -1,3 +1,7 @@
+$thin-border: 1px solid #e0e0e0;
+$primary-color: #333;
+$depth-1-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
 body{
     background-color: black;
     vertical-align: middle;
@@ -32,7 +36,7 @@ body{
         opacity:0;
         animation:animateFadeIn ease-in-out;
         animation-fill-mode:forwards;
-        animation-duration:0.5s;  
+        animation-duration:0.3s;  
     }
 
     //Left animation effect
@@ -110,5 +114,23 @@ body{
     }
     .timeline-section{
         float: right;
+
+        .friends-list{
+            .firstName{
+                font-size: 1.2rem;
+            }
+            .collection{
+                border: none !important;
+            }
+            .collection-item{
+                padding-top: 0.5rem !important;
+                border-bottom: $thin-border;
+                border-right: $thin-border;
+                border-radius: 2rem;
+                &:hover{
+                    box-shadow: $depth-1-shadow;
+                }
+            }
+        }
     }
 }

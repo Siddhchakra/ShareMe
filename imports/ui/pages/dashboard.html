@@ -11,13 +11,28 @@
                 <div class="divider"></div>
             </div>
             <div class="collection no-border user-options">
-                <a href="" class="collection-item active">Friends</a>
+                <a href="" class="collection-item"><span class="timeline">Timeline</span></a>
+                <a href="" class="collection-item"><span class="friends">Friends</span></a>
+                <a href="" class="collection-item"><span class="profile">Profile</span></a>
             </div>
         </div>
 
         <div class="timeline-section animate-zoom-in col s10">
             <div class="col s12 card">
                 <p class="center login-form-text">{{currentUser.profile.firstName}} is logged in ..</p>
+            </div>
+
+            <div class="public-timeline friends-list animate-fade-in col s12 card hide">
+                <ul class="collection">
+                    {{#each friendsCollection}}
+                    <li class="collection-item avatar col s4">
+                        <img src="/img/default_profile_pic.svg" alt="" class="circle">
+                        <span class="firstName green-text text-darken-2">{{profile.firstName}} {{profile.lastName}}</span>
+                        <p>{{emails.[0].address}}</p>
+                        <a href="" class="friend-request">Add Friend</a>
+                    </li>
+                    {{/each}}
+                </ul>
             </div>
         </div>
     </div>

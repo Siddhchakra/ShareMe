@@ -12,6 +12,9 @@ import '/imports/ui/pages/dashboard.html';
 //import JS files
 import { MessagePhrases } from '/imports/common/messagePhrases.js';
 
+//Publish collection
+Friends = new Meteor.Collection('friendsCollection');
+
 //Register Template
 Template.register.events({
   "click .sign-up": function (event) {
@@ -82,5 +85,40 @@ Template.home.events({
       }
     });
   }
+});
+//End
+
+//Dashboard Template
+Template.dashboard.events({
+  "click .user-options .collection-item": function (event) {
+    var user_option;
+
+    $('.user-options .collection-item.active').removeClass('active');
+    $('.public-timeline').addClass('hide');
+    event.toElement.classList.add('active');
+
+    user_option = event.toElement.childNodes[0].className;
+    switch (user_option) {
+      case "timeline":
+        break;
+      case "friends":
+        $('.timeline-section .friends-list').removeClass('hide');
+        break;
+      case "profile":
+        break;
+    }
+  }
+});
+
+Template.dashboard.onRendered(function () {
+  $('.user-options .collection-item')[0].click();
+});
+
+Template.dashboard.helpers({
+  friendsCollection: function () {
+    Meteor.subscribe('friendsList');
+
+    return Friends.find().fetch();
+  },
 });
 //End
