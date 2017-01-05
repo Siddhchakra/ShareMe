@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import { Friends } from '/models/tables/friendsCollection';
+import { Friends } from '/models/tables/usersFriendsCollection';
+import { ProfilePics } from '/models/tables/usersProfilePicturesCollection';
 
 //#region Meteor Publish
 Meteor.publish('friendsList', function () {
@@ -45,6 +46,7 @@ Meteor.methods({
     Accounts.sendVerificationEmail(userId);
   },
 
+  //Check whether email-id verified before login
   checkLoginEmailId(emailId) {
     var emailIdDetails;
 
@@ -52,6 +54,14 @@ Meteor.methods({
                                           { emails: [] });
 
     return emailIdDetails.emails[0].verified;
+  },
+
+  //Save profile pic
+  setProfilePic(args) {
+    return ProfilePics.insert({userId: args.userId,
+                                        profileImage: args.binaryImage,
+                                        createdAt: new Date(),
+                                        updatedAt: new Date()});
   }
 });
 //#end region

@@ -1,39 +1,63 @@
 <template name="dashboard">
     <div id="dashboard-page" class="row">
-        <div class="z-depth-2 user-section no-border-radius animate-left col s2 card">
+        <div class="z-depth-4 user-section no-border-radius animate-left col s2 card">
             <div class="center">
-                <img src="/img/default_profile_pic.svg" alt="" class="circle profile-pic responsive-img">
+                <img src="/img/default_profile_pic.jpg" alt="" class="profile-pic responsive-img">
                 <br>
                 <div>
-                    <a class="logout log-out-img" href=""><img src="/img/exit.svg" alt="" class="circle responsive-img"></a>
                     <span class="user-display-name blue-text text-darken-2">{{currentUser.profile.firstName}} {{currentUser.profile.lastName}} </span>
                 </div>
-                <div class="divider"></div>
             </div>
             <div class="collection no-border user-options">
-                <a href="" class="collection-item"><span class="timeline">Timeline</span></a>
+                <a href="" class="collection-item opacity-1"><span class="timeline">Timeline</span></a>
                 <a href="" class="collection-item"><span class="friends">Friends</span></a>
                 <a href="" class="collection-item"><span class="profile">Profile</span></a>
             </div>
         </div>
 
-        <div class="timeline-section animate-zoom-in col s10">
-            <div class="col s12 card">
-                <p class="center login-form-text">{{currentUser.profile.firstName}} is logged in ..</p>
+        <div class="timeline-section animate-fade-in col s10">
+            <div class="timeline-top col s12 card">
+                <!--<p class="center login-form-text">{{currentUser.profile.firstName}} is logged in ..</p>-->
             </div>
 
-            <div class="public-timeline friends-list animate-fade-in col s12 card hide">
-                <ul class="collection">
-                    {{#each friendsCollection}}
-                    <li class="collection-item avatar col s4">
-                        <img src="/img/default_profile_pic.svg" alt="" class="circle">
-                        <span class="firstName green-text text-darken-2">{{profile.firstName}} {{profile.lastName}}</span>
-                        <p>{{emails.[0].address}}</p>
-                        <a href="" class="friend-request">Add Friend</a>
-                    </li>
-                    {{/each}}
-                </ul>
+            <div class="user-option-data col s12 card">
+                <div class="user-option friends-list animate-fade-in">
+                    <ul class="collection">
+                        {{#each friendsCollection}}
+                        <li class="collection-item border-rig-thin avatar col s4">
+                            <img src="/img/default_profile_pic1.svg" alt="" class="circle">
+                            <span class="firstName green-text text-darken-2">{{profile.firstName}} {{profile.lastName}}</span>
+                            <p>{{emails.[0].address}}</p>
+                            <a href="" class="animate-fade-in add-friend">Add Friend</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+
+                <div class="user-option profile-section animate-fade-in col s12 card">
+                    <div class="btn">
+                        <span>Change DP</span>
+                        <input type="file" class="profile-pic-file">
+                    </div>
+                </div>
+
+                <!--{{> Timeline_body}}-->
             </div>
+        </div>
+
+        <div class="logout-div"><a class="logout" href="">Log Out</a>
         </div>
     </div>
 </template>
+
+<!--<template name="Timeline_body">
+    {{> Template.dynamic template=timeline_body}}
+</template>-->
+
+<!--<template name="friends_list">
+    <span>Helllowww !!!</span>
+</template>
+
+<template name="user_profile">
+
+</template>-->

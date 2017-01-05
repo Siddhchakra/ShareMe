@@ -9,18 +9,33 @@ body{
         position: fixed; 
         opacity: 0.5;
     }
+
+    .opacity-1{
+        opacity: 1 !important;
+    }
+
+    .border-bot-thin{
+        border-bottom: $thin-border;
+    }
+
+    .border-rig-thin{
+        border-right: $thin-border;
+    }
     
     //Zoom-In animation effect
     @keyframes animateZoomin{
         from {
             transform: scale(0,0);
+            opacity:0;
         }
         to{
             transform: scale(1,1);
+            opacity:1;
         }
     }
     .animate-zoom-in{
-        animation:animateZoomin 0.6s;
+        animation:animateZoomin;
+        animation-duration:0.6s; 
     }
     
     //Fade-In animation effect
@@ -52,7 +67,7 @@ body{
     }
     .animate-left{
         opacity:0;
-        animation:animateleft;
+        animation:animateleft ease-in-out;
         animation-fill-mode:forwards;
         animation-duration:0.6s;  
     }
@@ -91,44 +106,81 @@ body{
 
 #dashboard-page{
     .profile-pic{
-        width: 50%;
+        width: 45%;
+        margin-top: 3%;
     }
-    .log-out-img{
-        float: left;
-        width: 10%;
+    .logout-div{
+        width: 17%;
+        margin-top: 46%;
+        margin-left: 6%;
+        position: absolute;
     }
+    // .log-out-img{
+    //     float: left;
+    //     width: 10%;
+    // }
     .divider{
         margin-top: 10% !important;
     }
     .user-display-name{
-        margin-right: 10%;
+        // margin-bottom: 0.5rem;
+        color: wheat !important;
     }
     .user-section{
         margin-top: 0% !important;
         height: 100%;
-        position: fixed;      
+        position: fixed; 
+        background: transparent;     
     }
     .user-options{
         left: 6%;
         margin-top: 20%;
+        .collection-item{
+            background: transparent;
+            opacity: 0.5;
+            &:hover{
+                opacity: 1;
+            }
+            &:last-child{
+                border-bottom: $thin-border !important;
+            }
+        }
     }
     .timeline-section{
         float: right;
 
+        .timeline-top{
+            width: 82%;
+            position: fixed;
+            height: 7.5%;
+        }
+        .user-option-data{
+            height: 100%;
+            position: fixed;
+            width: 82%;
+            margin-top: 4.7%;
+        }
         .friends-list{
             .firstName{
-                font-size: 1.2rem;
+                font-size: 110%;
+                font-weight: bold;
             }
             .collection{
                 border: none !important;
             }
             .collection-item{
-                padding-top: 0.5rem !important;
-                border-bottom: $thin-border;
-                border-right: $thin-border;
-                border-radius: 2rem;
+                padding-top: 1% !important;
+                .add-friend{
+                    float: right;
+                    display: none;
+                }
                 &:hover{
-                    box-shadow: $depth-1-shadow;
+                    .add-friend{
+                        display: initial;
+                    }
+                }
+                &:last-child{
+                    border-bottom: $thin-border !important;
                 }
             }
         }

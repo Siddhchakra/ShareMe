@@ -8,6 +8,13 @@ Router.route('/', function () {
     BlazeLayout.render('App_body', { main: 'home' });
 });
 
+// Router.route('', {
+//     name: 'Friends',
+//     action() {
+//         BlazeLayout.render('Timeline_body', { timeline_body: 'friends_list' });
+//     }
+// });
+
 Router.route('/verify-email/:token', function () {
     var token;
 

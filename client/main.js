@@ -2,12 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 //import HTML files
-import './main.html';
-import '/imports/ui/pages/emailverified.html';
-import '/imports/ui/pages/register.html';
-import '/imports/ui/pages/login.html';
-import '/imports/ui/pages/home.html';
-import '/imports/ui/pages/dashboard.html';
+import '/imports/ui/js/pages.js';
 
 //import JS files
 import { MessagePhrases } from '/imports/common/messagePhrases.js';
@@ -90,27 +85,62 @@ Template.home.events({
 
 //Dashboard Template
 Template.dashboard.events({
-  "click .user-options .collection-item": function (event) {
+  "click .user-options .collection-item": function (event, template) {
     var user_option;
 
+    $('.user-options .collection-item.active').removeClass('opacity-1');
     $('.user-options .collection-item.active').removeClass('active');
-    $('.public-timeline').addClass('hide');
-    event.toElement.classList.add('active');
+
+    $('.user-option').addClass('hide');
 
     user_option = event.toElement.childNodes[0].className;
+
     switch (user_option) {
       case "timeline":
         break;
       case "friends":
-        $('.timeline-section .friends-list').removeClass('hide');
+        // Router.go('Friends');
+        $('.user-option.friends-list').removeClass('hide');
         break;
       case "profile":
+        $('.user-option.profile-section').removeClass('hide');
         break;
+    }
+
+    event.toElement.classList.add('active');
+    event.toElement.classList.add('opacity-1');
+  },
+
+  "change .profile-pic-file": function (event, template) {
+    var file;
+    var reader;
+
+    file = event.target.files[0]; //assuming 1 file only
+
+    if (!file) return;
+
+    reader = new FileReader(); //create a reader according to HTML5 File API
+    reader.readAsArrayBuffer(file); //read the file as arraybuffer
+
+    reader.onload = function (event) {
+      var serverArgs;
+      var buffer;
+
+      buffer = new Uint8Array(reader.result) // convert to binary
+
+      serverArgs = {};
+      serverArgs.userId = Meteor.userId();
+      serverArgs.binaryImage = buffer;
+
+      Meteor.call("setProfilePic", serverArgs, function (err, res) {
+        console.log(res);
+      });
     }
   }
 });
 
 Template.dashboard.onRendered(function () {
+  //Displaying Timeline section as default when page is loaded
   $('.user-options .collection-item')[0].click();
 });
 
