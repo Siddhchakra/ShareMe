@@ -1,12 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Friends } from '/models/tables/usersFriendsCollection';
-import { ProfilePics } from '/models/tables/usersProfilePicturesCollection';
+import { ProfilePicCollection } from '/models/tables/usersProfilePicturesCollection';
 
 //#region Meteor Publish
 Meteor.publish('friendsList', function () {
-  // return Meteor.users.find({ _id: { $ne: this.userId } });
   var self = this;
-  var handle = Meteor.users.find({ _id: { $ne: this.userId } }).observeChanges({
+  var handle = Meteor.users.find({ _id: { $ne: this.userId },
+                                   emails: { $elemMatch: { verified: true } }}).observeChanges({
     added: function (id, fields) {
       self.added('friendsCollection', id, fields);
     },
@@ -26,7 +26,6 @@ Meteor.publish('friendsList', function () {
 });
 //#end region
 
-
 //#region Methods
 Meteor.methods({
   createNewUser(args) {
@@ -43,7 +42,7 @@ Meteor.methods({
     });
 
     //Send email-id verification mail right after creating new user.
-    Accounts.sendVerificationEmail(userId);
+    // Accounts.sendVerificationEmail(userId);
   },
 
   //Check whether email-id verified before login
@@ -58,7 +57,7 @@ Meteor.methods({
 
   //Save profile pic
   setProfilePic(args) {
-    return ProfilePics.insert({userId: args.userId,
+    return ProfilePicCollection.insert({userId: args.userId,
                                         profileImage: args.binaryImage,
                                         createdAt: new Date(),
                                         updatedAt: new Date()});

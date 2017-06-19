@@ -35,13 +35,22 @@
                 </div>
 
                 <div class="user-option profile-section animate-fade-in col s12 card">
-                    <div class="btn">
+                    <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Change PP</a>
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal modal-fixed-footer">
+                        <div class="modal-content">
+                            <h4>Modal Header</h4>
+                            <p>A bunch of text</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                        </div>
+                    </div>
+                    <!--<div class="btn">
                         <span>Change DP</span>
                         <input type="file" class="profile-pic-file">
-                    </div>
+                    </div>-->
                 </div>
-
-                <!--{{> Timeline_body}}-->
             </div>
         </div>
 
@@ -49,15 +58,3 @@
         </div>
     </div>
 </template>
-
-<!--<template name="Timeline_body">
-    {{> Template.dynamic template=timeline_body}}
-</template>-->
-
-<!--<template name="friends_list">
-    <span>Helllowww !!!</span>
-</template>
-
-<template name="user_profile">
-
-</template>-->

@@ -1,0 +1,38 @@
+Delete Query:
+	db.users.deleteOne({_id: db.users.findOne()._id})
+Update Query:
+	db.users.updateOne({"_id": ""DZAZXSGkdeCjXYKK8"}, {$set :{"emails.0.verified": true}})
+	
+	
+
+
+{
+        "_id" : "k9JnjWw5LkYRjk8ea",
+        "createdAt" : ISODate("2016-12-28T21:45:14.801Z"),
+        "services" : {
+                "password" : {
+                        "bcrypt" : "$2a$10$9Ztro38j6AbpT9kchbCHzuHlYjjz9FOVekiJz.07B1XTrFpAqW6C6"
+                },
+                "email" : {
+                        "verificationTokens" : [ ]
+                },
+                "resume" : {
+                        "loginTokens" : [
+                                {
+                                        "when" : ISODate("2016-12-28T21:45:39.902Z"),
+                                        "hashedToken" : "8raeP8LBo+mt4eAV4KoCV1dWjDRVuU1H0bm+gecOfn4="
+                                }
+                        ]
+                }
+        },
+        "emails" : [
+                {
+                        "address" : "siddhchakragujar@gmail.com",
+                        "verified" : true
+                }
+        ],
+        "profile" : {
+                "firstName" : "Siddhchakra",
+                "lastName" : "Gujar"
+        }
+}
